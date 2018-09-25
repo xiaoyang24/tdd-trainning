@@ -6,13 +6,13 @@ case class User(
   email: String,
   password: String
 ){
-  def validate(): Boolean = password.length >= 8
+  def validate(): String = if (password.length >= 8) "OK" else "NG"
 
   def signature(): String = {
     if (companyName.nonEmpty) {
-      s"$companyName: 田中太郎 NG"
+      s"$companyName: $name ${validate()}"
     } else {
-      "田中太郎 NG"
+      s"$name ${validate()}"
     }
   }
 }
